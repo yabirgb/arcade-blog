@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Yabir's blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    
+<meta property="og:title" content="Yabir's blog"/>
+<meta property="og:description" content="Arcade: A new static site generator" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yabirgb.com/arcade" />
+<meta property="article:published_time" content="2020-04-07 00:00:00"/>
+<meta property="article:modified_time" content="2020-04-07 00:00:00"/>
+
+  </head>
+  <body>
+    
+<div class="post-page">  
+  <h1>Arcade: A new static site generator</h1>
+  <a id="back" href="/">HOME</a>
+  <div class='meta'>
+    <time datetime='created'>
+      07-04-2020
+    </time>
+    - By Yábir García
+  </div>
+  <div class='markdown'>
+    <p>I want to make a little post talking about <code>Arcade</code>, my latest public
+project. </p>
+<p>The objetive was to create an easy to use static site generator that
+didn't require a complex installation process and let me quicly focus
+on just writting. Previously my blog was generated using hugo, but my
+biggest issue was that I needed to have go and install the
+dependencies. Whenever I wanted to write something it just happend
+that I didn't have the right tools installed and I had to go to the
+documentation and restart the installation process. Also <code>go</code> doesn't
+come by default in my system, so I have to worry about having it
+installed.</p>
+<p>For this reasons I wanted to create something that was just <code>plug and
+write</code> and allowed me as much as hugo did.</p>
+<h2>The tooling</h2>
+<p>I went with python3 because most of the linux distros (if not all of
+them) bring python by default in the system and to install my package
+you only need pip and an easy</p>
+<p><code>python3 -m pip install arcade-generator</code></p>
+<p>and you have everything you need.</p>
+<h2>Capabilities</h2>
+<p>I did't want to lose some good things from hugo like:</p>
+<ul>
+<li>command line utility</li>
+<li>live server that shows changes after saves</li>
+<li>easy script to create the basic folder structure</li>
+<li>theme system</li>
+</ul>
+<p>those are strong points that I believe every static site generator
+should have and arcade must match those.</p>
+<h2>How I did it</h2>
+<p>It surprised me because it was quite easy. In one afternoon I had more
+or less the basic code without much effort.</p>
+<p>To read commands from the command line I used
+<a href="https://click.palletsprojects.com/en/7.x/">click</a> wich I've used
+previously and makes everything related to command line tools
+consistant, conviniant and easy.</p>
+<p>To get live previous of my files I used
+<a href="https://github.com/lepture/python-livereload">livereload</a>. Again
+super easy to use and provided much all the features I was looking
+for.</p>
+<p>To get my markdown text to html I use the
+<a href="https://python-markdown.github.io/">markdown</a> package. It supports
+many of the things you can imagine from markdown so it was the obvious
+decission.</p>
+<p>On my side what I did was to track for changes the <code>content</code> and
+<code>themes</code> folder so every time something changes on disk the html files
+are updated. I provided basic functionalities like a <code>most recent</code>
+section, <code>history</code> of posts and configurable social icons.</p>
+<p>Finally to make easy to use themes I use <code>jinja</code> so everything is
+passed to certain variables and the only thing left to do if you want
+a new theme is edit the templates.</p>
+<p>There are 3 basic commands</p>
+<ul>
+<li><code>init</code></li>
+<li><code>watch</code></li>
+<li><code>build</code></li>
+</ul>
+<p>The last one builds all the html structure with the static content and
+prepares it in a folder ready to be uploaded.</p>
+<h2>The future</h2>
+<p>In the future I want to add more functionalities like integration with
+<code>github-packages</code> and optimizations in the source code. </p>
+<p>Hope you enjoy it!</p>
+  </div>
+</div>
+
+      <footer>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </footer>
+  </body>
+</html>

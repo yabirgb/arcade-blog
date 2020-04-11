@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Yabir's blog</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    
+<meta property="og:title" content="Yabir's blog"/>
+<meta property="og:description" content="Using Oracle DB in Ubuntu without dying" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yabirgb.com/oracle-xe" />
+<meta property="article:published_time" content="2018-12-21 00:00:00"/>
+<meta property="article:modified_time" content="2018-12-21 00:00:00"/>
+
+  </head>
+  <body>
+    
+<div class="post-page">  
+  <h1>Using Oracle DB in Ubuntu without dying</h1>
+  <a id="back" href="/">HOME</a>
+  <div class='meta'>
+    <time datetime='created'>
+      21-12-2018
+    </time>
+    - By Yábir García
+  </div>
+  <div class='markdown'>
+    <h2>Introduction</h2>
+<p>At my subject of fundaments of databases we use Oracle as database (yes I hate 
+it). I don't have a windows machine and installing all the stuff 
+from oracle to make my exercises is pure pain to me. So this is a guide to have 
+fun while installing it.</p>
+<p>What we are going to use is docker to put in a container Oracle XE and 
+we'll install Oracle SQL Developer. </p>
+<p>You need an account in the Oracle system to download this tool.</p>
+<h2>Install dependencies</h2>
+<p>We need to install docker. A guide for your system can be found 
+in <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">it's offcicial webpage</a>.
+At the side nav you can find your distro.</p>
+<p>Probably you'll need to add your user to the docker group. As described 
+<a href="https://techoverflow.net/2017/03/01/solving-docker-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket/">here</a>
+, you can do it with </p>
+<pre><code>sudo usermod -a -G docker $USER
+</code></pre>
+<p>(you will need to log-out and log-in back or reboot your computer so the changes
+takes effect. If you used snap to install docker follow <a href="https://askubuntu.com/a/990058">this steps</a> )</p>
+<p>Once you have docker installed we'll use a docker image for the Oracle XE.
+The one I used is <a href="https://hub.docker.com/r/wnameless/oracle-xe-11g/">this from wnameless</a>.</p>
+<p>What you need to do is</p>
+<pre><code>docker pull wnameless/oracle-xe-11g
+</code></pre>
+<p>this will download the container and then run it</p>
+<pre><code>docker run -d -p 49161:1521 wnameless/oracle-xe-11g
+</code></pre>
+<p>The last one will run the database listening on port 49161.
+As described in the container page the details for the db are</p>
+<pre><code>hostname: localhost
+port: 49161
+sid: xe
+username: system
+password: oracle
+</code></pre>
+<p>This method is clean and your computer won't be filled with dependencies
+and things that at least I'm not going to use soon (or atleast I don't want).</p>
+<p>To install the Oracle SQL developer I followed <a href="https://askubuntu.com/questions/458554/how-to-install-sql-developer-on-ubuntu-14-04">this guide</a>
+where what you need to do is</p>
+<ol>
+<li>
+<p>Install java if you don't have it</p>
+<pre><code>sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+sudo update-alternatives --config java
+</code></pre>
+</li>
+<li>
+<p>Download SQL Developer from the <a href="http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html">official page</a></p>
+</li>
+<li>
+<p>Extract files</p>
+<pre><code>sudo unzip sqldeveloper-*-no-jre.zip -d /opt/
+sudo chmod +x /opt/sqldeveloper/sqldeveloper.sh
+</code></pre>
+</li>
+<li>
+<p>Create a symbolic link to the app</p>
+<pre><code>sudo ln -s /opt/sqldeveloper/sqldeveloper.sh /usr/local/bin/sqldeveloper
+</code></pre>
+</li>
+<li>
+<p>Edit the start script at <code>/opt/sqldeveloper/sqldeveloper.sh</code> so it contains</p>
+<pre><code>#!/bin/bash
+unset -v GNOME_DESKTOP_SESSION_ID
+cd /opt/sqldeveloper/sqldeveloper/bin &amp;&amp; bash sqldeveloper $*
+</code></pre>
+</li>
+<li>
+<p>Run sqldeveloper</p>
+<pre><code>sqldeveloper
+</code></pre>
+</li>
+</ol>
+<p>You can create a icon in your launcher too but we aren't not using this again so.</p>
+<p>You can stop the docker container using the <code>stop</code> option. 
+To list your containers use <code>docker ps</code>.</p>
+<p>After this you can configure SQL Developer to connect on port <code>49161</code> with
+the credentials provided and you </p>
+<p>Note: If the cursos is not showing in the SQL Developer go to </p>
+<pre><code>Tools &gt; Preferences &gt; Code Editor &gt; Fonts
+</code></pre>
+<p>and chage the font size (I use <code>14</code>)</p>
+  </div>
+</div>
+
+      <footer>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </footer>
+  </body>
+</html>

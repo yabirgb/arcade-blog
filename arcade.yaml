@@ -1,0 +1,10 @@
+author_name: 'Yábir García'
+base_path: 'https://yabirgb.com'
+social:
+  email: null
+  github: null
+  linkedin: null
+  mastodon: null
+  twitter: null
+theme: themes/baseline
+page_name: "Yabir's blog"
