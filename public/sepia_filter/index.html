@@ -11,27 +11,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
     
-<meta property="og:title" content="Yabir's blog"/>
+<meta property="og:title" content="Yabir's blog" />
 <meta property="og:description" content="Creating a sepia filter with python" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yabirgb.com/sepia_filter" />
-<meta property="article:published_time" content="2019-02-17 00:00:00"/>
-<meta property="article:modified_time" content="2019-02-17 00:00:00"/>
+<meta property="article:published_time" content="2019-02-17 00:00:00" />
+<meta property="article:modified_time" content="2019-02-17 00:00:00" />
 
   </head>
   <body>
     
-<div class="post-page">  
-  <h1>Creating a sepia filter with python</h1>
-  <a id="back" href="/">HOME</a>
-  <div class='meta'>
-    <time datetime='created'>
-      17-02-2019
-    </time>
-    - By Yábir García
-  </div>
-  <div class='markdown'>
-    <h2>Introduction</h2>
+<main>
+    <h1>Creating a sepia filter with python</h1>
+    <section id="page-top">
+        <a id="back" href="/">HOME</a>
+        <div class="meta">
+            <time datetime="created"> 17-02-2019 </time>
+            - By Yábir García
+        </div>
+    </section>
+
+    <div class="markdown"><h2>Introduction</h2>
 <p>Last week I wanted to emulate the css effects in python on
 images. The filter that caught my attention was the sepia filter.  I
 write this because I couldn't find much information about the topic on
@@ -80,7 +80,7 @@ def sepia(image_path:str)-&gt;Image:
 
     return img
 </code></pre>
-<p>Here I'm assuming that the image is a <code>jpeg</code>, but in case of a <code>png</code> is 
+<p>Here I'm assuming that the image is a <code>jpeg</code>, but in case of a <code>png</code> is
 similar but taking care of the alpha layer. This is easy, but very <strong>slow</strong>, so ... how can this be faster?</p>
 <p>My next search was for applying filters to images and I discovered cv2.
 Scrolling fast the docs I wrote this:</p>
@@ -90,7 +90,7 @@ from PIL import Image
 
 def sepia_cv(image_path:str)-&gt;Image:
     """
-    Optimization on the sepia filter using cv2 
+    Optimization on the sepia filter using cv2
     """
 
     image = Image.open(image_path)
@@ -98,27 +98,27 @@ def sepia_cv(image_path:str)-&gt;Image:
     # Load the image as an array so cv knows how to work with it
     img = np.array(image)
 
-    # Apply a transformation where we multiply each pixel rgb 
+    # Apply a transformation where we multiply each pixel rgb
     # with the matrix for the sepia
 
     filt = cv2.transform( img, np.matrix([[ 0.393, 0.769, 0.189],
                                           [ 0.349, 0.686, 0.168],
-                                          [ 0.272, 0.534, 0.131]                                  
+                                          [ 0.272, 0.534, 0.131]
     ]) )
 
     # Check wich entries have a value greather than 255 and set it to 255
     filt[np.where(filt&gt;255)] = 255
 
-    # Create an image from the array 
+    # Create an image from the array
     return Image.fromarray(filt)
 </code></pre>
-<p>What is happening here is that the previous sums and products are no 
-more than a linear transformation between subspaces of the reals, 
-so we can represent this as a matrix. But loading <code>cv2</code> and <code>numpy</code> 
+<p>What is happening here is that the previous sums and products are no
+more than a linear transformation between subspaces of the reals,
+so we can represent this as a matrix. But loading <code>cv2</code> and <code>numpy</code>
 for this is too much so let's just use numpy.</p>
 <pre><code>def sepia_np(image_path:str)-&gt;Image:
     """
-    Optimization on the sepia filter using numpy 
+    Optimization on the sepia filter using numpy
     """
 
     image = Image.open(image_path)
@@ -126,12 +126,12 @@ for this is too much so let's just use numpy.</p>
     # Load the image as an array so cv knows how to work with it
     img = np.array(image)
 
-    # Apply a transformation where we multiply each pixel 
+    # Apply a transformation where we multiply each pixel
     # rgb with the matrix transformation for the sepia
 
     lmap = np.matrix([[ 0.393, 0.769, 0.189],
                       [ 0.349, 0.686, 0.168],
-                      [ 0.272, 0.534, 0.131]                                  
+                      [ 0.272, 0.534, 0.131]
     ])
 
     filt = np.array([x * lmap.T for x in img] )
@@ -173,7 +173,7 @@ transformation matrix is:</p>
 </ul>
 <p><img alt="" src="/static/images/andrea-ranalletta-1368337-unsplash-min.sepia.1.jpg" style="width:33%" /></p>
 <h2>Measuring times</h2>
-<p>Calling <code>python -m cProfile test.py</code> (<a href="[cProfile](https://docs.python.org/3/library/profile.html)">^3</a>) with my Pentium G3258 on the image used in this post (2453x2453 pixels):</p>
+<p>Calling <code>python -m cProfile test.py</code> (<a href="https://docs.python.org/3/library/profile.html">cProfile</a>) with my Pentium G3258 on the image used in this post (2453x2453 pixels):</p>
 <pre><code>    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
 
          1    0.007    0.007    0.293    0.293 test.py:34(sepia_cv)
@@ -181,10 +181,11 @@ transformation matrix is:</p>
          1    7.857    7.857   16.634   16.634 test.py:7(sepia)
 </code></pre>
 <p>This times don't count the time importing the modules used.</p>
-<p>[^1]: <a href="https://stackoverflow.com/questions/1061093/how-is-a-sepia-tone-created">How is a sepia tone created?</a></p>
-<p>[^2]: <a href="https://stackoverflow.com/a/27623335">Why we need uint8</a></p>
-  </div>
-</div>
+<ul>
+<li>[^1]: <a href="https://stackoverflow.com/questions/1061093/how-is-a-sepia-tone-created">How is a sepia tone created?</a></li>
+<li>[^2]: <a href="https://stackoverflow.com/a/27623335">Why we need uint8</a></li>
+</ul></div>
+</main>
 
       <footer>
     
