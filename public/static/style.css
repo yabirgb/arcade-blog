@@ -1,6 +1,6 @@
 @font-face {
     font-family: CutiveMono;
-    src: url("/static/CutiveMono-Regular");
+    src: url("CutiveMono-Regular.ttf");
 }
 
 body {
@@ -56,13 +56,17 @@ a {
     color: #0033cc;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
     body {
-        color: #eee;
-        background: #121212;
+        color: #f6eee3;
+        background: #11100e;
     }
 
-    body a {
-        color: #809fff;
+    a {
+        color: #f6eee3;
     }
-} */
+
+    pre {
+        border-color: #f6eee3;
+    }
+}
