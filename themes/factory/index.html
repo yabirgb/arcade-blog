@@ -3,13 +3,13 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{config.base_path}}" />
-{% endblock head%} {% block content %}
+{% endblock head%} {% block body_class %}home{% endblock body_class %} {% block content %}
 <main>
     {% if config.page_name %}<h1 class="title">{{config.page_name}}</h1>{% endif %}
     {{post}}
     <h3>Latest Posts</h3>
     <ul id="post-list">
-        {% for post in posts %}
+        {% for post in posts[:10] %}
         <li class="post-item">
             <a href="{{post.slug}}/">{{ post.title }}</a>
             <span class="meta"><time datetime="post.created">{{ post.created_human }}</time></span>

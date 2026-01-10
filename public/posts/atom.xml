@@ -1,0 +1,348 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Yabir's blog</title><id>https://yabirgb.com</id><link href="https://yabirgb.com" /><link href="https://yabirgb.com/atom.xml" rel="self" /><updated>2020-04-11T00:00:00+00:00</updated><entry><title>Collaborating in mozilla projects</title><id>https://yabirgb.com/posts/open-source-mozilla/</id><updated>2020-04-11T00:00:00+00:00</updated><link href="https://yabirgb.com/posts/open-source-mozilla/" /><content type="html">&lt;p&gt;This last week I've been working on different projects at the
+&lt;a href="https://github.com/mozilla/"&gt;mozilla&lt;/a&gt; repositories in github.&lt;/p&gt;
+&lt;p&gt;I enjoy working with other people in open source projects that I
+believe have a positive inpact. This is the case of the projects I had
+the oportunity to work on.&lt;/p&gt;
+&lt;p&gt;The one I'm more proud about is a little tunning I did to a &lt;code&gt;struct&lt;/code&gt;
+used to create json request to an API. This is the
+&lt;a href="https://github.com/mozilla/application-services/commit/62785bce709f1d5481c97ef1fca355311d818b9a"&gt;commit&lt;/a&gt;. The
+reason I'm so proud about this one is that this one is my first &lt;strong&gt;rust&lt;/strong&gt;
+commit to a project that is not mine. &lt;/p&gt;
+&lt;p&gt;Rust is a lenguage that I've played with earlier but never seriously
+and during this time at home I've been more serious with it.&lt;/p&gt;
+&lt;p&gt;Also I made a couple of contributions to
+&lt;a href="https://github.com/mozilla/domain_utils"&gt;domain_utils&lt;/a&gt;. As far as I
+know this library is being used in some serious projects and my help
+was good.&lt;/p&gt;
+&lt;p&gt;Lastly I cuntributed to
+&lt;a href="https://github.com/mozilla/bugbug/commit/a6e24cbe14be323ec0efa9f1d492d201e5da4231"&gt;bugbug&lt;/a&gt;
+a project to use AI to improve how mozilla handles bug reports. I'm
+happy with this one because let me learn something new, the &lt;code&gt;struct&lt;/code&gt;
+module in python.&lt;/p&gt;
+&lt;p&gt;If you want to contribute to mozilla and don't know where to start I
+recommend you &lt;a href="https://codetribute.mozilla.org/"&gt;this page&lt;/a&gt; where you
+can filter by labels, for example &lt;code&gt;good-first-issue&lt;/code&gt;. &lt;/p&gt;</content></entry><entry><title>Arcade: A new static site generator</title><id>https://yabirgb.com/posts/arcade/</id><updated>2020-04-07T00:00:00+00:00</updated><link href="https://yabirgb.com/posts/arcade/" /><content type="html">&lt;p&gt;I want to make a little post talking about &lt;code&gt;Arcade&lt;/code&gt;, my latest public
+project. &lt;/p&gt;
+&lt;p&gt;The objetive was to create an easy to use static site generator that
+didn't require a complex installation process and let me quicly focus
+on just writting. Previously my blog was generated using hugo, but my
+biggest issue was that I needed to have go and install the
+dependencies. Whenever I wanted to write something it just happend
+that I didn't have the right tools installed and I had to go to the
+documentation and restart the installation process. Also &lt;code&gt;go&lt;/code&gt; doesn't
+come by default in my system, so I have to worry about having it
+installed.&lt;/p&gt;
+&lt;p&gt;For this reasons I wanted to create something that was just &lt;code&gt;plug and
+write&lt;/code&gt; and allowed me as much as hugo did.&lt;/p&gt;
+&lt;h2&gt;The tooling&lt;/h2&gt;
+&lt;p&gt;I went with python3 because most of the linux distros (if not all of
+them) bring python by default in the system and to install my package
+you only need pip and an easy&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;python3 -m pip install arcade-generator&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;and you have everything you need.&lt;/p&gt;
+&lt;h2&gt;Capabilities&lt;/h2&gt;
+&lt;p&gt;I did't want to lose some good things from hugo like:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;command line utility&lt;/li&gt;
+&lt;li&gt;live server that shows changes after saves&lt;/li&gt;
+&lt;li&gt;easy script to create the basic folder structure&lt;/li&gt;
+&lt;li&gt;theme system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;those are strong points that I believe every static site generator
+should have and arcade must match those.&lt;/p&gt;
+&lt;h2&gt;How I did it&lt;/h2&gt;
+&lt;p&gt;It surprised me because it was quite easy. In one afternoon I had more
+or less the basic code without much effort.&lt;/p&gt;
+&lt;p&gt;To read commands from the command line I used
+&lt;a href="https://click.palletsprojects.com/en/7.x/"&gt;click&lt;/a&gt; wich I've used
+previously and makes everything related to command line tools
+consistant, conviniant and easy.&lt;/p&gt;
+&lt;p&gt;To get live previous of my files I used
+&lt;a href="https://github.com/lepture/python-livereload"&gt;livereload&lt;/a&gt;. Again
+super easy to use and provided much all the features I was looking
+for.&lt;/p&gt;
+&lt;p&gt;To get my markdown text to html I use the
+&lt;a href="https://python-markdown.github.io/"&gt;markdown&lt;/a&gt; package. It supports
+many of the things you can imagine from markdown so it was the obvious
+decission.&lt;/p&gt;
+&lt;p&gt;On my side what I did was to track for changes the &lt;code&gt;content&lt;/code&gt; and
+&lt;code&gt;themes&lt;/code&gt; folder so every time something changes on disk the html files
+are updated. I provided basic functionalities like a &lt;code&gt;most recent&lt;/code&gt;
+section, &lt;code&gt;history&lt;/code&gt; of posts and configurable social icons.&lt;/p&gt;
+&lt;p&gt;Finally to make easy to use themes I use &lt;code&gt;jinja&lt;/code&gt; so everything is
+passed to certain variables and the only thing left to do if you want
+a new theme is edit the templates.&lt;/p&gt;
+&lt;p&gt;There are 3 basic commands&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;init&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;watch&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;build&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The last one builds all the html structure with the static content and
+prepares it in a folder ready to be uploaded.&lt;/p&gt;
+&lt;h2&gt;The future&lt;/h2&gt;
+&lt;p&gt;In the future I want to add more functionalities like integration with
+&lt;code&gt;github-packages&lt;/code&gt; and optimizations in the source code. &lt;/p&gt;
+&lt;p&gt;Hope you enjoy it!&lt;/p&gt;</content></entry><entry><title>Creating a sepia filter with python</title><id>https://yabirgb.com/posts/sepia_filter/</id><updated>2019-02-17T00:00:00+00:00</updated><link href="https://yabirgb.com/posts/sepia_filter/" /><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Last week I wanted to emulate the css effects in python on
+images. The filter that caught my attention was the sepia filter.  I
+write this because I couldn't find much information about the topic on
+the web.&lt;/p&gt;
+&lt;h2&gt;Basics&lt;/h2&gt;
+&lt;p&gt;A quick search on your favourite search engine leads to &lt;a href="https://www.techrepublic.com/blog/how-do-i/how-do-i-convert-images-to-grayscale-and-sepia-tone-using-c/"&gt;this
+page&lt;/a&gt;
+where as mentioned in stackoverflow ([^1]) what you have to do is:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;outputRed = (inputRed * .393) + (inputGreen *.769) + (inputBlue * .189)
+outputGreen = (inputRed * .349) + (inputGreen *.686) + (inputBlue * .168)
+outputBlue = (inputRed * .272) + (inputGreen *.534) + (inputBlue * .131)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The result is (Image by Andrea Ranalleta on Unsplash):&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/static/images/andrea-ranalletta-1368337-unsplash-min.jpg" style="width:33%" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="" src="/static/images/andrea-ranalletta-1368337-unsplash-min.sepia.jpg" style="width:33%" /&gt;&lt;/p&gt;
+&lt;h2&gt;Coding this on python&lt;/h2&gt;
+&lt;p&gt;With this information what you have to do is to ignore the alpha layer
+and for each pixel calculate a bunch of numbers.&lt;/p&gt;
+&lt;p&gt;You can use &lt;code&gt;Pillow&lt;/code&gt; for this and then on your program:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;from PIL import Image
+
+def sepia(image_path:str)-&amp;gt;Image:
+    img = Image.open(image_path)
+    width, height = img.size
+
+    pixels = img.load() # create the pixel map
+
+    for py in range(height):
+     for px in range(width):
+         r, g, b = img.getpixel((px, py))
+
+         tr = int(0.393 * r + 0.769 * g + 0.189 * b)
+         tg = int(0.349 * r + 0.686 * g + 0.168 * b)
+         tb = int(0.272 * r + 0.534 * g + 0.131 * b)
+
+         if tr &amp;gt; 255:
+             tr = 255
+
+         if tg &amp;gt; 255:
+             tg = 255
+
+         if tb &amp;gt; 255:
+             tb = 255
+
+         pixels[px, py] = (tr,tg,tb)
+
+    return img
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here I'm assuming that the image is a &lt;code&gt;jpeg&lt;/code&gt;, but in case of a &lt;code&gt;png&lt;/code&gt; is
+similar but taking care of the alpha layer. This is easy, but very &lt;strong&gt;slow&lt;/strong&gt;, so ... how can this be faster?&lt;/p&gt;
+&lt;p&gt;My next search was for applying filters to images and I discovered cv2.
+Scrolling fast the docs I wrote this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import cv2
+import numpy as np
+from PIL import Image
+
+def sepia_cv(image_path:str)-&amp;gt;Image:
+    """
+    Optimization on the sepia filter using cv2
+    """
+
+    image = Image.open(image_path)
+
+    # Load the image as an array so cv knows how to work with it
+    img = np.array(image)
+
+    # Apply a transformation where we multiply each pixel rgb
+    # with the matrix for the sepia
+
+    filt = cv2.transform( img, np.matrix([[ 0.393, 0.769, 0.189],
+                                          [ 0.349, 0.686, 0.168],
+                                          [ 0.272, 0.534, 0.131]
+    ]) )
+
+    # Check wich entries have a value greather than 255 and set it to 255
+    filt[np.where(filt&amp;gt;255)] = 255
+
+    # Create an image from the array
+    return Image.fromarray(filt)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;What is happening here is that the previous sums and products are no
+more than a linear transformation between subspaces of the reals,
+so we can represent this as a matrix. But loading &lt;code&gt;cv2&lt;/code&gt; and &lt;code&gt;numpy&lt;/code&gt;
+for this is too much so let's just use numpy.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;def sepia_np(image_path:str)-&amp;gt;Image:
+    """
+    Optimization on the sepia filter using numpy
+    """
+
+    image = Image.open(image_path)
+
+    # Load the image as an array so cv knows how to work with it
+    img = np.array(image)
+
+    # Apply a transformation where we multiply each pixel
+    # rgb with the matrix transformation for the sepia
+
+    lmap = np.matrix([[ 0.393, 0.769, 0.189],
+                      [ 0.349, 0.686, 0.168],
+                      [ 0.272, 0.534, 0.131]
+    ])
+
+    filt = np.array([x * lmap.T for x in img] )
+
+    # Check wich entries have a value greather than 255 and set it to 255
+    filt[np.where(filt&amp;gt;255)] = 255
+
+    # Create an image from the array
+    return Image.fromarray(filt.astype('uint8'))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In this solution take care of ([^2])&lt;/p&gt;
+&lt;h2&gt;Improving the filter&lt;/h2&gt;
+&lt;p&gt;In &lt;code&gt;CSS&lt;/code&gt; you can apply an scale to the filter. After searching a lot I
+found &lt;a href="https://drafts.fxtf.org/filter-effects/#sepiaEquivalent"&gt;&lt;em&gt;this
+link&lt;/em&gt;&lt;/a&gt; where
+it specifies how to apply the filter using this scale. The thing is
+that aside the linear map, you are using a movement. The
+transformation matrix is:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    matrix = [[ 0.393 + 0.607 * (1 - k), 0.769 - 0.769 * (1 - k), 0.189 - 0.189 * (1 - k)],
+    [ 0.349 - 0.349 * (1 - k), 0.686 + 0.314 * (1 - k), 0.168 - 0.168 * (1 - k)],
+    [ 0.272 - 0.349 * (1 - k), 0.534 - 0.534* (1 - k), 0.131 + 0.869 * (1 - k)]]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;where &lt;code&gt;k&lt;/code&gt; is the interval [0,1].&lt;/p&gt;
+&lt;p&gt;Here are some examples:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sepia with amount = 0 (original image)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="" src="/static/images/andrea-ranalletta-1368337-unsplash-min.sepia.0.jpg" style="width:33%" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sepia with amount = 0.3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="" src="/static/images/andrea-ranalletta-1368337-unsplash-min.sepia.0.3.jpg" style="width:33%" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sepia with amount = 0.7&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="" src="/static/images/andrea-ranalletta-1368337-unsplash-min.sepia.0.7.jpg" style="width:33%" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Sepia with amount = 1 (the same filter we created initally)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img alt="" src="/static/images/andrea-ranalletta-1368337-unsplash-min.sepia.1.jpg" style="width:33%" /&gt;&lt;/p&gt;
+&lt;h2&gt;Measuring times&lt;/h2&gt;
+&lt;p&gt;Calling &lt;code&gt;python -m cProfile test.py&lt;/code&gt; (&lt;a href="https://docs.python.org/3/library/profile.html"&gt;cProfile&lt;/a&gt;) with my Pentium G3258 on the image used in this post (2453x2453 pixels):&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+
+         1    0.007    0.007    0.293    0.293 test.py:34(sepia_cv)
+         1    0.033    0.033    0.499    0.499 test.py:56(sepia_np)
+         1    7.857    7.857   16.634   16.634 test.py:7(sepia)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This times don't count the time importing the modules used.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[^1]: &lt;a href="https://stackoverflow.com/questions/1061093/how-is-a-sepia-tone-created"&gt;How is a sepia tone created?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[^2]: &lt;a href="https://stackoverflow.com/a/27623335"&gt;Why we need uint8&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry><entry><title>Using Oracle DB in Ubuntu without dying</title><id>https://yabirgb.com/posts/oracle-xe/</id><updated>2018-12-21T00:00:00+00:00</updated><link href="https://yabirgb.com/posts/oracle-xe/" /><content type="html">&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;At my subject of fundaments of databases we use Oracle as database (yes I hate 
+it). I don't have a windows machine and installing all the stuff 
+from oracle to make my exercises is pure pain to me. So this is a guide to have 
+fun while installing it.&lt;/p&gt;
+&lt;p&gt;What we are going to use is docker to put in a container Oracle XE and 
+we'll install Oracle SQL Developer. &lt;/p&gt;
+&lt;p&gt;You need an account in the Oracle system to download this tool.&lt;/p&gt;
+&lt;h2&gt;Install dependencies&lt;/h2&gt;
+&lt;p&gt;We need to install docker. A guide for your system can be found 
+in &lt;a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/"&gt;it's offcicial webpage&lt;/a&gt;.
+At the side nav you can find your distro.&lt;/p&gt;
+&lt;p&gt;Probably you'll need to add your user to the docker group. As described 
+&lt;a href="https://techoverflow.net/2017/03/01/solving-docker-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket/"&gt;here&lt;/a&gt;
+, you can do it with &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo usermod -a -G docker $USER
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;(you will need to log-out and log-in back or reboot your computer so the changes
+takes effect. If you used snap to install docker follow &lt;a href="https://askubuntu.com/a/990058"&gt;this steps&lt;/a&gt; )&lt;/p&gt;
+&lt;p&gt;Once you have docker installed we'll use a docker image for the Oracle XE.
+The one I used is &lt;a href="https://hub.docker.com/r/wnameless/oracle-xe-11g/"&gt;this from wnameless&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;What you need to do is&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker pull wnameless/oracle-xe-11g
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;this will download the container and then run it&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker run -d -p 49161:1521 wnameless/oracle-xe-11g
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The last one will run the database listening on port 49161.
+As described in the container page the details for the db are&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;hostname: localhost
+port: 49161
+sid: xe
+username: system
+password: oracle
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This method is clean and your computer won't be filled with dependencies
+and things that at least I'm not going to use soon (or atleast I don't want).&lt;/p&gt;
+&lt;p&gt;To install the Oracle SQL developer I followed &lt;a href="https://askubuntu.com/questions/458554/how-to-install-sql-developer-on-ubuntu-14-04"&gt;this guide&lt;/a&gt;
+where what you need to do is&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Install java if you don't have it&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+sudo update-alternatives --config java
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Download SQL Developer from the &lt;a href="http://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html"&gt;official page&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Extract files&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo unzip sqldeveloper-*-no-jre.zip -d /opt/
+sudo chmod +x /opt/sqldeveloper/sqldeveloper.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Create a symbolic link to the app&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo ln -s /opt/sqldeveloper/sqldeveloper.sh /usr/local/bin/sqldeveloper
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Edit the start script at &lt;code&gt;/opt/sqldeveloper/sqldeveloper.sh&lt;/code&gt; so it contains&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+unset -v GNOME_DESKTOP_SESSION_ID
+cd /opt/sqldeveloper/sqldeveloper/bin &amp;amp;&amp;amp; bash sqldeveloper $*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Run sqldeveloper&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sqldeveloper
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can create a icon in your launcher too but we aren't not using this again so.&lt;/p&gt;
+&lt;p&gt;You can stop the docker container using the &lt;code&gt;stop&lt;/code&gt; option. 
+To list your containers use &lt;code&gt;docker ps&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;After this you can configure SQL Developer to connect on port &lt;code&gt;49161&lt;/code&gt; with
+the credentials provided and you &lt;/p&gt;
+&lt;p&gt;Note: If the cursos is not showing in the SQL Developer go to &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Tools &amp;gt; Preferences &amp;gt; Code Editor &amp;gt; Fonts
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and chage the font size (I use &lt;code&gt;14&lt;/code&gt;)&lt;/p&gt;</content></entry><entry><title>Looking back: Summer 2018</title><id>https://yabirgb.com/posts/2018-summer/</id><updated>2018-10-01T00:00:00+00:00</updated><link href="https://yabirgb.com/posts/2018-summer/" /><content type="html">&lt;h2&gt;What did I do / What I'm doing&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;I'm getting federation ready for my project &lt;a href="https://github.com/anforaProject"&gt;Anfora&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;I traveled to Berlin and Morocco.&lt;/li&gt;
+&lt;li&gt;I'm re-learning rust and taking it serious.&lt;/li&gt;
+&lt;li&gt;Deployed a mastodon instance using docker.&lt;/li&gt;
+&lt;li&gt;I've send my CV for some intenships the next year.&lt;/li&gt;
+&lt;li&gt;Finally installed from zero arch in a dual boot. I had problems with
+  my network card not being compatible with something and I rolled
+  back. I'm using i3 wm.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Links&lt;/h2&gt;
+&lt;p&gt;I've colected various links this summer:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://mp.weixin.qq.com/s/WEgJ5i8aQiiPFgxMy54ZNA"&gt;This one&lt;/a&gt; explaining how fast charging works on oppo.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://getpocket.com/redirect?url=https%3A%2F%2Fblog.coinbase.com%2Fhow-were-scaling-our-platform-for-spikes-in-customer-demand-4a047cb3139c&amp;amp;formCheck=9ce0757a0caebf28bdbdeb55259e3e44"&gt;Scaling on coinbase&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/google-design/google-photos-45b714dfbed1"&gt;Building the Google Photos Web UI&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://segment.com/blog/goodbye-microservices/"&gt;Goodbye Microservices: From 100s of problem children to 1 superstar&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://hacks.mozilla.org/2018/06/retained-display-lists/"&gt;Retained Display Lists for improved page performance&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Videos&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;An &lt;a href="https://kyren.github.io/2018/09/14/rustconf-talk.html"&gt;interesting talk&lt;/a&gt; on the rust conf about game developing&lt;/li&gt;
+&lt;li&gt;A youtube video from Jonathan Blow &lt;a href="https://youtu.be/4t1K66dMhWk"&gt;reacting&lt;/a&gt; to the talk&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=8Dso6Fv1FUw"&gt;Understanding Quantum Mechanics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content></entry></feed>

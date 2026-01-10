@@ -5,11 +5,10 @@
 <meta property="og:url" content="{{config.base_path}}/{{slug}}" />
 <meta property="article:published_time" content="{{created}}" />
 <meta property="article:modified_time" content="{{created}}" />
-{% endblock head%} {% block content %}
+{% endblock head%} {% block body_class %}post{% endblock body_class %} {% block content %}
 <main>
     <h1>{{title}}</h1>
     <section id="page-top">
-        <a id="back" href="/">HOME</a>
         <div class="meta">
             <time datetime="created"> {{ created_human }} </time>
             - By {{config.author_name}}
